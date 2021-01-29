@@ -1,0 +1,2505 @@
+@charset "UTF-8";
+/*@mixin diagram {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}*/
+/*@import './grid';*/
+@import './variables';
+* {
+  box-sizing: border-box;
+  font-family: "Open sans", sans-serif;
+}
+
+body {
+  font-family: "Open sans", sans-serif;
+}
+
+.container {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[class*=col-] {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.col-xs-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: -15px;
+  padding-right: -15px;
+}
+
+//TABLET
+
+@media(min-width: 768px) {
+  .container {
+    max-width: 720px;
+}
+  @for $i from 1 through 12 {
+    .col-sm-#{$i} {
+      flex:0 0 percentage($i/12);
+      max-width: percentage($i/12);
+    }
+  }
+  .header {
+    @include flexCenter();
+    background-color: #315a6b;
+    font-family: "Open sans", sans-serif;
+    height: 50px;
+  }
+  .header-top {
+    background-color: rgba($color: #4f4f4f, $alpha: 0.7);
+  }
+  .dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.4);
+  }
+  .hide-sm {
+    display: none;
+  }
+  .logo {
+    margin-top: 10px;
+    margin-left: 30px;
+  }
+  .login,.register {
+    color: #f1efef;
+    align-self: center;
+    margin-left: 10px;
+    position: relative;
+    &:hover .circle {
+      display: block;
+    }
+  }
+  .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: $btnColor;
+    position: absolute;
+    margin-left: -15px;
+    margin-top: -13px;
+    display: none;
+  }
+  .menu {
+    position: relative;
+    @include flexSpaceAround();
+    li {
+      padding: 15px 10px 15px 10px;
+      border-bottom: 5px solid transparent;
+      &:hover {
+        border-bottom: 5px solid $btnColor;
+      }
+      &:hover .submenu {
+        @include flexSubmenu(space-around);
+        margin-top: 20px;
+        margin-left: -10px;
+        visibility: visible;
+        opacity: 1;
+        background-color: rgba($color: #4f4f4f, $alpha: 0.7);
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        font-family: "Open sans", sans-serif;
+      }
+    }
+  }
+  .submenu {
+    position: absolute;
+    visibility: hidden;
+    flex-shrink: 0;
+  }
+  /*FORM*/
+
+  .form {
+    display: flex;
+    position: relative;
+    top: 8px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    height: 30px;
+    .search {
+      color: #ffffff;
+      font-size: 14px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      background: none;
+      padding-left: 10px;
+      &:focus {outline: none;}
+      &::-webkit-input-placeholder { color: #ffffff; }
+   }
+ }
+  .button-search {
+    position: absolute;
+    top: 4px;
+    margin-left: 130px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    &:before {
+      @include btnBefore("\f002");
+      color: #ffffff;
+      font-size: 15px;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .cart {
+    align-items: flex-end;
+    margin-top: 15px;
+  }
+
+  .fafa-shopping-cart:before {
+    cursor: pointer;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 15px;
+    color: #919fa5;
+  }
+
+  .section-1 {
+    background-image: url(images/IMG_9618.2.png);
+    @include carsBlock(600px);
+  }
+
+  [class*=heading-] {
+    /*@include flexCenter();*/
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .heading-1 {
+    margin-top: 50px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .buttons {
+    @include flexCenter();
+    margin-top: 200px;
+    margin-bottom: 185px;
+  }
+
+  [class*=btn-] {
+    padding: 10px 30px;
+    font-size: 12px;
+    background-color: #315a6b;
+    color: white;
+    border: none;
+  }
+
+  [class*=btn-]:focus {
+    outline: none;
+    &:hover {
+      background-color: #b1cd32;
+      color: #181818;
+    }
+  }
+
+  .btn-see-all {
+    margin-left: 10px;
+  }
+
+  [class*=description-] {
+    margin-top: 30px;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+    color: #919fa5;
+  }
+
+  .description-1 {
+    color: #ffffff;
+  }
+
+  .heading-2, .heading-3 {
+    margin-left: 5px;
+    line-height: 1.5;
+  }
+  .heading-4 {
+    @include flexCenter();
+    font-size: 17px;
+    /*border-left: 5px solid $btnColor;*/
+    padding-left: 5px;
+  }
+  .heading-icon {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .tverca {
+    @include tvercaIcon();
+  }
+
+  .cars-block {
+    margin-top: 30px;
+  }
+
+  [class*=cars-item-] {
+    background-image: url(images/e21.png);
+    height: 200px;
+    background-size: cover;
+  }
+
+  .cars-item-2 {
+    background-image: url(images/motor.png);
+  }
+
+  .cars-item-3 {
+    background-image: url(images/merc&bmw.png);
+  }
+
+  .heading-item {
+    color: #444444;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    font-size: 17px;
+    &:hover {
+      color: #b1cd32;
+      background-color: #f1efef;
+      cursor: pointer;
+    }
+  }
+
+  .section-3 {
+    background-color: #f1efef;
+  }
+
+  .service-block {
+    @include service-block();
+  }
+
+  .service-items {
+    margin-left: 15px;
+  }
+
+  .our-service {
+    margin-top: 40px;
+  }
+
+  [class*=service-icon] {
+    @include service-icon();
+    flex-shrink: 0;
+  }
+
+  .service-icon-1 {
+    background-image: url(images/idea.png);
+  }
+
+  .service-icon-1:hover {
+    background-image: url(images/green-idea.png);
+  }
+
+  .service-icon-2 {
+    background-image: url(images/wrench.png);
+  }
+
+  .service-icon-2:hover {
+    background-image: url(images/greencircle.png);
+  }
+
+  .service-icon-3 {
+    background-image: url(images/paint-work.png);
+  }
+
+  .service-icon-3:hover {
+    background-image: url(images/green-paint.png);
+  }
+
+  .service-icon-4 {
+    background-image: url(images/electric.png);
+  }
+
+  .service-icon-4:hover {
+    background-image: url(images/green-electric.png);
+  }
+
+  .service-heading {
+    font-size: 15px;
+  }
+
+  .service-description {
+    margin-top: 10px;
+    color: #919fa5;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .diagram-block { 
+    @include flexCenter();
+    margin-top: 40px;
+  }
+
+  .types-serv {
+   margin: 50px 0px;
+  }
+
+  .diagram {
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .diagram-description {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #919fa5;
+    border-bottom: 5px solid transparent;
+    padding: 5px 0px;
+    &:hover {
+      border-bottom: 5px solid #b1cd32;
+    }
+  }
+
+  .footer {
+    display: flex;
+    background-color: #315a6b;
+  }
+
+  .sotial {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .footer-link {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+
+  /*PAGE 2*/
+  .page-2 .section-1 {
+    background-image: url(images/IMG_9772.2.jpg);
+    @include carsBlock(600px);
+  }
+  .page-2 .dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.3);
+    height: 600px;
+  }
+  .page-2 .header-top {
+    background-color: rgba($color: #858585, $alpha: 0.4);
+  }
+  .page-2 .btn-view-products {
+   width: 200px;
+  }
+  .heading-5 {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .category-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-container {
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+  .category-1 {
+    @include carsBlock(180px);
+    background-image: url(images/merc-120.png);
+  }
+  .category-2 {
+    @include carsBlock(180px);
+    background-image: url(images/mk-1.png);
+  }
+  .category-3 {
+    @include carsBlock(180px);
+    background-image: url(images/e28.jpg);
+  }
+  .category-4 {
+    @include carsBlock(180px);
+    background-image: url(images/e190.jpg);
+  }
+  .category-item {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    margin-top: -25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: #ffffff;
+    background-color: #3a454d;
+    &:hover {
+      background-color: $btnColor;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: all 2s ease;
+    }
+  }
+  .quant-items {
+    color: $fontCol;
+    font-size: 14px;
+  }
+  // TABS
+  .tab-title-items {
+    font-size: 15px;
+    margin-top: 30px;
+    color: $fontCol;
+    @include flexCenter();
+  }
+  .tab-title-item {
+    padding-left: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+  }
+  .tab-title-item:hover,.active {
+    color: #b1cd32;
+    border-left: 5px solid #b1cd32;
+  }
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+  //ITEMS
+  .tab-top {
+    margin-top: 50px;
+  }
+  .motor-block {
+    @include flexSubmenu(column);
+    border: 1px solid #cecece;
+  }
+  .motor-img-1 {
+    background-image: url(images/m20b20.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-2 {
+    background-image: url(images/m70.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-3 {
+    background-image: url(images/OM601.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-4 {
+    background-image: url(images/m30.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-5 {
+    background-image: url(images/golf-gti.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-6 {
+    background-image: url(images/ingector.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-7 {
+    background-image: url(images/e30white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-8 {
+    background-image: url(images/w124.jpeg);
+    @include carsBlock(180px);
+  }
+  .motor-img-9 {
+    background-image: url(images/rim1.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-10 {
+    background-image: url(images/suspBmw.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-11 {
+    background-image: url(images/190white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-12 {
+    background-image: url(images/golfgti.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-13 {
+    background-image: url(images/rim2.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-14 {
+    background-image: url(images/gisc.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-15 {
+    background-image: url(images/w144.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-16 {
+    background-image: url(images/MTS.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-17 {
+    background-image: url(images/redgolf.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-18 {
+    background-image: url(images/headlightE21.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-19 {
+    background-image: url(images/E34white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-20 {
+    background-image: url(images/spoiler.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-21 {
+    background-image: url(images/blackE190.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-22 {
+    background-image: url(images/headlightE28.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-23 {
+    background-image: url(images/frontE28.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-24 {
+    background-image: url(images/backE32.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-25 {
+    background-image: url(images/Samrez.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-26 {
+    background-image: url(images/Putty1.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-27 {
+    background-image: url(images/tools.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-28 {
+    background-image: url(images/Putty2.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-29 {
+    background-image: url(images/plates.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-30 {
+    background-image: url(images/signBmw.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-31 {
+    background-image: url(images/bat.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-32 {
+    background-image: url(images/fire.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-33 {
+    background-image: url(images/leopard.jpeg);
+    @include carsBlock(180px);
+  }
+  .motor-img-34 {
+    background-image: url(images/tree.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-35 {
+    background-image: url(images/N2O.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-36 {
+    background-image: url(images/nitromethane.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-37 {
+    background-image: url(images/stik1.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-38 {
+    background-image: url(images/icons.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-39 {
+    background-image: url(images/NewPlate.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-40 {
+    background-image: url(images/MSsign.jpg);
+    @include carsBlock(180px);
+  }
+  .description-motor {
+    margin-top: 0;
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+  .price {
+    color: #3a454d;
+    font-size: 20px;
+    text-align: center;
+  }
+  .price-one {
+    font-size: 12px;
+    color: #82888d;
+  }
+  .btn-description {
+    margin-top: 15px;
+    background-color: #cecece;
+    color: #3a454d;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  .btn-add-cart {
+    margin-top: 5px;
+    &:hover {
+      background-color: #e6b516;
+    }
+  }
+  .show-more {
+    @include flexCenter();
+  }
+  .btn-show-more {
+    background-color: #57585a;
+    margin: 100px 150px;
+    padding: 10px 30px;
+    font-size: 15px;
+  }
+
+  /*PAGE #3*/
+  /*.page-3 .section-1 {
+    background-image: url(images/520E12.jpg);
+    @include carsBlock(50px);
+  
+  }
+  /*.page-3 .section-2 {
+    background-color: #3a454d;
+  }
+  .page-3 .dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.7);
+  }
+  .page-3 .header-top {
+    background-color: rgba($color: #858585, $alpha: 0.2);
+  }
+  /*SLIDER*/
+  .slick-track {
+    display: flex;
+  }
+  /*.slide-img {
+   height: 500px;
+  }*/
+  .car-top {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .car-dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.5);
+  }
+  [class*=car-shop-] {
+    @include flexCenter();
+    @include carsBlock(200px);
+    background-image: url(images/girl.jpg);
+  }
+  .car-shop-2 {
+    background-image: url(images/maintenance.jpg);
+  }
+  .car-shop-3 {
+    background-image: url(images/delivery.jpg);
+  }
+  [class*=car-sale-item-] {
+    @include flexCenter();
+    background-color: rgb(201, 221, 88);
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: all 2s ease;
+      /*-webkit-transform: rotateZ(20deg);
+      -ms-transform: rotateZ(20deg);
+      transform: rotateZ(20deg);
+      transition: all 2s ease;*/
+    }
+  }
+  .car-sale-item-1 {
+    width: 100%;
+  }
+  .car-sale-item-2 {
+    padding: 10px 15px;
+    background-color: rgb(221, 175, 88);
+  }
+  .car-sale-item-3 {
+    padding: 10px 5px;
+    background-color: rgb(88, 196, 111);
+  }
+  //TABS
+  .page-3 .tab-title-items {
+    font-size: 15px;
+    margin-top: 50px;
+    color: $fontCol;
+    @include flexCenter();
+  }
+  .tab-title-item {
+    padding-left: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+  }
+
+  .tab-title-item:hover,.active {
+    color: #b1cd32;
+    border-left: 5px solid #b1cd32;
+  }
+
+  .page-3 .motor-img-1 {
+    @include carsBlock(180px);
+    background-image: url(images/greenE12.jpg);
+  }
+  .page-3 .motor-img-2 {
+    @include carsBlock(180px);
+    background-image: url(images/E34white.jpg);
+  }
+  .page-3 .motor-img-3 {
+    @include carsBlock(180px);
+    background-image: url(images/E21green.jpg);
+  }
+  .page-3 .motor-img-4 {
+    @include carsBlock(180px);
+    background-image: url(images/M5E28.jpg);
+  }
+  .page-3 .motor-img-5 {
+    @include carsBlock(180px);
+    background-image: url(images/E30coupe.jpg);
+  }
+  .page-3 .motor-img-6 {
+    @include carsBlock(180px);
+    background-image: url(images/e32low.jpg);
+  }
+  .page-3 .motor-img-7 {
+    @include carsBlock(180px);
+    background-image: url(images/e36coupe.jpg);
+  }
+  .page-3 .motor-img-8 {
+    @include carsBlock(180px);
+    background-image: url(images/e39white.jpg);
+  }
+  .car-char {
+    font-size: 13px;
+    text-align: left;
+    padding: 5px 20px;
+    color: #3a454d;
+  }
+  .char {
+    font-size: 12px;
+    color: $fontCol;
+    padding-left: 10px;
+  }
+  .page-3 .price {
+    margin-top: 10px;
+  }
+  .page-3 .description-motor {
+    margin-top: 10px;
+    text-align: left;
+    padding: 15px 20px;
+  }
+  .page-3 .btn-add-cart {
+    &:hover {
+      background-color: $btnColor;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+  @for $i from 1 through 12 {
+    .col-md-#{$i} {
+      flex:0 0 percentage($i/12);
+      max-width: percentage($i/12);
+    }
+  }
+  .header {
+    @include flexCenter();
+    background-color: #315a6b;
+    font-family: "Open sans", sans-serif;
+    height: 50px;
+  }
+  .header-top {
+    background-color: rgba($color: #4f4f4f, $alpha: 0.7);
+  }
+  .dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.4);
+  }
+  .hide-md {
+    display: none;
+  }
+  .logo {
+    margin-top: 10px;
+    margin-left: 30px;
+  }
+  .login,.register {
+    color: #f1efef;
+    align-self: center;
+    margin-left: 10px;
+    position: relative;
+    &:hover .circle {
+      display: block;
+    }
+  }
+  .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: $btnColor;
+    position: absolute;
+    margin-left: -15px;
+    margin-top: -13px;
+    display: none;
+  }
+  .menu {
+    position: relative;
+    @include flexSpaceAround();
+    li {
+      padding: 15px 10px 15px 10px;
+      border-bottom: 5px solid transparent;
+      &:hover {
+        border-bottom: 5px solid $btnColor;
+      }
+      &:hover .submenu {
+        @include flexSubmenu(space-around);
+        margin-top: 20px;
+        margin-left: -10px;
+        visibility: visible;
+        opacity: 1;
+        background-color: rgba($color: #4f4f4f, $alpha: 0.7);
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        font-family: "Open sans", sans-serif;
+      }
+    }
+  }
+  .submenu {
+    position: absolute;
+    visibility: hidden;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+  /*FORM*/
+
+  .form {
+    display: flex;
+    position: relative;
+    top: 8px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    height: 30px;
+    .search {
+      color: #ffffff;
+      font-size: 14px;
+      border: 1px solid #ffffff;
+      border-radius: 5px;
+      background: none;
+      padding-left: 10px;
+      &:focus {outline: none;}
+      &::-webkit-input-placeholder { color: #ffffff; }
+   }
+ }
+  .button-search {
+    position: absolute;
+    top: 4px;
+    margin-left: 130px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    &:before {
+      @include btnBefore("\f002");
+      color: #ffffff;
+      font-size: 15px;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .cart {
+    align-items: flex-end;
+    margin-top: 15px;
+  }
+
+  .fafa-shopping-cart:before {
+    cursor: pointer;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 15px;
+    color: #919fa5;
+  }
+
+  .section-1 {
+    background-image: url(images/IMG_9618.2.png);
+    width: 100%;
+    @include carsBlock(600px);
+  }
+
+  [class*=heading-] {
+    /*@include flexCenter();*/
+    text-align: center;
+    font-size: 25px;
+  }
+
+  .heading-1 {
+    margin-top: 50px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .buttons {
+    @include flexCenter();
+    margin-top: 200px;
+    margin-bottom: 215px;
+  }
+
+  [class*=btn-] {
+    padding: 10px 30px;
+    font-size: 12px;
+    background-color: #315a6b;
+    color: white;
+    border: none;
+  }
+
+  [class*=btn-]:focus {
+    outline: none;
+  }
+
+  [class*=btn-]:hover {
+    background-color: #b1cd32;
+    color: #181818;
+  }
+
+  .btn-see-all {
+    margin-left: 10px;
+  }
+
+  [class*=description-] {
+    margin-top: 30px;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+    color: #919fa5;
+  }
+
+  .description-1 {
+    color: #ffffff;
+  }
+
+  .heading-2, .heading-3 {
+    margin-left: 5px;
+    line-height: 1.5;
+  }
+  .heading-4 {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 17px;
+    border-left: 5px solid $btnColor;
+    padding-left: 5px;
+  }
+  .heading-icon {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .tverca {
+    @include tvercaIcon();
+  }
+
+  .cars-block {
+    margin-top: 30px;
+  }
+
+  [class*=cars-item-] {
+    background-image: url(images/e21.png);
+    height: 200px;
+    background-size: cover;
+  }
+
+  .cars-item-2 {
+    background-image: url(images/motor.png);
+  }
+
+  .cars-item-3 {
+    background-image: url(images/merc&bmw.png);
+  }
+
+  .heading-item {
+    color: #444444;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    font-size: 17px;
+    &:hover {
+      color: #b1cd32;
+      background-color: #f1efef;
+      cursor: pointer;
+    }
+  }
+
+  .section-3 {
+    background-color: #f1efef;
+  }
+
+  .service-block {
+    @include service-block();
+  }
+
+  .service-items {
+    margin-left: 15px;
+  }
+
+  .our-service {
+    margin-top: 40px;
+  }
+
+  [class*=service-icon] {
+    @include service-icon();
+    flex-shrink: 0;
+  }
+
+  .service-icon-1 {
+    background-image: url(images/idea.png);
+  }
+
+  .service-icon-1:hover {
+    background-image: url(images/green-idea.png);
+  }
+
+  .service-icon-2 {
+    background-image: url(images/wrench.png);
+  }
+
+  .service-icon-2:hover {
+    background-image: url(images/greencircle.png);
+  }
+
+  .service-icon-3 {
+    background-image: url(images/paint-work.png);
+  }
+
+  .service-icon-3:hover {
+    background-image: url(images/green-paint.png);
+  }
+
+  .service-icon-4 {
+    background-image: url(images/electric.png);
+  }
+
+  .service-icon-4:hover {
+    background-image: url(images/green-electric.png);
+  }
+
+  .service-heading {
+    font-size: 15px;
+  }
+
+  .service-description {
+    margin-top: 10px;
+    color: #919fa5;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .diagram-block { 
+    @include service-block();
+    margin-top: 40px;
+  }
+
+  .types-serv {
+    margin-top: -250px;
+    margin-bottom: 250px;
+  }
+
+  .diagram {
+    text-align: center;
+    margin-left: 10px;
+  }
+
+  .diagram-description {
+    font-size: 14px;
+    margin-top: 20px;
+    color: #919fa5;
+    border-bottom: 5px solid transparent;
+    padding: 5px 0px;
+    &:hover {
+      border-bottom: 5px solid #b1cd32;
+    }
+  }
+
+  .footer {
+    display: flex;
+    background-color: #315a6b;
+  }
+
+  .sotial {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .footer-link {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+
+  /*PAGE 2*/
+  .page-2 .section-1 {
+    background-image: url(images/IMG_9772.2.jpg);
+    @include carsBlock(600px);
+  }
+  .page-2 .dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.3);
+    height: 600px;
+  }
+  .page-2 .header-top {
+    background-color: rgba($color: #858585, $alpha: 0.4);
+  }
+  .page-2 .btn-view-products {
+   width: 200px;
+  }
+  .heading-5 {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .category-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .cat-container {
+    margin-top: 50px;
+    margin-bottom: 100px;
+  }
+  .category-1 {
+    @include carsBlock(180px);
+    background-image: url(images/merc-120.png);
+  }
+  .category-2 {
+    @include carsBlock(180px);
+    background-image: url(images/mk-1.png);
+  }
+  .category-3 {
+    @include carsBlock(180px);
+    background-image: url(images/e28.jpg);
+  }
+  .category-4 {
+    @include carsBlock(180px);
+    background-image: url(images/e190.jpg);
+  }
+  .category-item {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    margin-top: -25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: #ffffff;
+    background-color: #3a454d;
+    &:hover {
+      background-color: $btnColor;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: all 2s ease;
+    }
+  }
+  .quant-items {
+    color: $fontCol;
+    font-size: 14px;
+  }
+  // TABS
+  .tab-title-items {
+    font-size: 15px;
+    margin-top: 30px;
+    color: $fontCol;
+    @include flexCenter();
+  }
+  .tab-title-item {
+    padding-left: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+  }
+
+  .tab-title-item:hover,.active {
+    color: #b1cd32;
+    border-left: 5px solid #b1cd32;
+  }
+
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+  //ITEMS
+  .tab-top {
+    margin-top: 50px;
+  }
+  .motor-block {
+    @include flexSubmenu(column);
+    border: 1px solid #cecece;
+  }
+  .motor-img-1 {
+    background-image: url(images/m20b20.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-2 {
+    background-image: url(images/m70.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-3 {
+    background-image: url(images/OM601.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-4 {
+    background-image: url(images/m30.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-5 {
+    background-image: url(images/golf-gti.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-6 {
+    background-image: url(images/ingector.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-7 {
+    background-image: url(images/e30white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-8 {
+    background-image: url(images/w124.jpeg);
+    @include carsBlock(180px);
+  }
+  .motor-img-9 {
+    background-image: url(images/rim1.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-10 {
+    background-image: url(images/suspBmw.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-11 {
+    background-image: url(images/190white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-12 {
+    background-image: url(images/golfgti.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-13 {
+    background-image: url(images/rim2.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-14 {
+    background-image: url(images/gisc.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-15 {
+    background-image: url(images/w144.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-16 {
+    background-image: url(images/MTS.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-17 {
+    background-image: url(images/redgolf.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-18 {
+    background-image: url(images/headlightE21.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-19 {
+    background-image: url(images/E34white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-20 {
+    background-image: url(images/spoiler.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-21 {
+    background-image: url(images/blackE190.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-22 {
+    background-image: url(images/headlightE28.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-23 {
+    background-image: url(images/frontE28.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-24 {
+    background-image: url(images/backE32.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-25 {
+    background-image: url(images/Samrez.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-26 {
+    background-image: url(images/Putty1.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-27 {
+    background-image: url(images/tools.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-28 {
+    background-image: url(images/Putty2.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-29 {
+    background-image: url(images/plates.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-30 {
+    background-image: url(images/signBmw.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-31 {
+    background-image: url(images/bat.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-32 {
+    background-image: url(images/fire.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-33 {
+    background-image: url(images/leopard.jpeg);
+    @include carsBlock(180px);
+  }
+  .motor-img-34 {
+    background-image: url(images/tree.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-35 {
+    background-image: url(images/N2O.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-36 {
+    background-image: url(images/nitromethane.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-37 {
+    background-image: url(images/stik1.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-38 {
+    background-image: url(images/icons.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-39 {
+    background-image: url(images/NewPlate.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-40 {
+    background-image: url(images/MSsign.jpg);
+    @include carsBlock(180px);
+  }
+  .description-motor {
+    margin-top: 0;
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+  .price {
+    color: #3a454d;
+    font-size: 20px;
+    text-align: center;
+  }
+  .price-one {
+    font-size: 12px;
+    color: #82888d;
+  }
+  .btn-description {
+    margin-top: 15px;
+    background-color: #cecece;
+    color: #3a454d;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  .btn-add-cart {
+    margin-top: 5px;
+    &:hover {
+      background-color: #e6b516;
+    }
+  }
+  .show-more {
+    @include flexCenter();
+  }
+  .btn-show-more {
+    background-color: #57585a;
+    margin: 100px 150px;
+    padding: 10px 30px;
+    font-size: 15px;
+  }
+
+  /*PAGE #3*/
+  .page-3 .section-1 {
+    /*background-image: url(images/520E12.jpg);*/
+    /*@include carsBlock(51px);*/
+    background: none;
+    height: 51px;
+  }
+  .section-slider {
+    background-color:  #ffffff;
+    margin-bottom: 100px;
+  }
+  .page-3 .section-2 {
+    background-color: #3a454d;
+  }
+  /*.page-3 .dark-bg {
+    background-color: rgba($color: #ffffff, $alpha: 0.5);
+  }*/
+  .page-3 .header-top .submenu {
+    background-color: rgba($color: #f3cbcb, $alpha: 0.5);
+  }
+
+  /*SLIDER*/
+  .slick-track {
+    display: flex;
+  }
+
+  .slider-block {
+    margin-bottom: -20px;
+    outline: none;
+  }
+
+  .slider-block-2 img {
+    margin: 0px 7px;
+    padding: 3px;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  .slider-block-2 img:hover,.active {
+    background: #747474;
+  }
+  .slick-dots {
+    margin-top: -50px;
+  }
+  .slick-dots li button {
+    border: 2px solid $btnColor;
+    border-radius: 5px;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  
+  .slick-dots li button:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #777;
+    opacity: 1;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  .slick-dots li.slick-active button:before {
+    background-color: #ffffff;
+  }
+
+  .slick-next, .slick-prev {
+    font-size: 35px;
+    height: 32px;
+    z-index: 1001;
+    &:before {
+      font-size: 35px;
+      text-shadow: 1px 1px 1px rgba(0,0,0, 0.4);
+    }
+  }
+
+  .slick-prev {
+    left: 15px;
+  }
+
+  .slick-next {
+    right: 30px;
+  }
+  .car-top {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .car-dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.5);
+  }
+  [class*=car-shop-] {
+    @include flexCenter();
+    @include carsBlock(200px);
+    background-image: url(images/girl.jpg);
+  }
+  .car-shop-2 {
+    background-image: url(images/maintenance.jpg);
+  }
+  .car-shop-3 {
+    background-image: url(images/delivery.jpg);
+  }
+  [class*=car-sale-item-] {
+    @include flexCenter();
+    background-color: rgb(201, 221, 88);
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: all 2s ease;
+      /*-webkit-transform: rotateZ(20deg);
+      -ms-transform: rotateZ(20deg);
+      transform: rotateZ(20deg);
+      transition: all 2s ease;*/
+    }
+  }
+  .car-sale-item-1 {
+    width: 100%;
+  }
+  .car-sale-item-2 {
+    padding: 10px 15px;
+    background-color: rgb(221, 175, 88);
+  }
+  .car-sale-item-3 {
+    padding: 10px 5px;
+    background-color: rgb(88, 196, 111);
+  }
+  //TABS
+  .page-3 .tab-title-items {
+    font-size: 15px;
+    margin-top: 50px;
+    color: $fontCol;
+    @include flexCenter();
+  }
+  .tab-title-item {
+    padding-left: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+  }
+
+  .tab-title-item:hover,.active {
+    color: #b1cd32;
+    border-left: 5px solid #b1cd32;
+  }
+
+  .page-3 .motor-img-1 {
+    @include carsBlock(180px);
+    background-image: url(images/greenE12.jpg);
+  }
+  .page-3 .motor-img-2 {
+    @include carsBlock(180px);
+    background-image: url(images/E34white.jpg);
+  }
+  .page-3 .motor-img-3 {
+    @include carsBlock(180px);
+    background-image: url(images/E21green.jpg);
+  }
+  .page-3 .motor-img-4 {
+    @include carsBlock(180px);
+    background-image: url(images/M5E28.jpg);
+  }
+  .page-3 .motor-img-5 {
+    @include carsBlock(180px);
+    background-image: url(images/E30coupe.jpg);
+  }
+  .page-3 .motor-img-6 {
+    @include carsBlock(180px);
+    background-image: url(images/e32low.jpg);
+  }
+  .page-3 .motor-img-7 {
+    @include carsBlock(180px);
+    background-image: url(images/e36coupe.jpg);
+  }
+  .page-3 .motor-img-8 {
+    @include carsBlock(180px);
+    background-image: url(images/e39white.jpg);
+  }
+  .car-char {
+    font-size: 13px;
+    text-align: left;
+    padding: 5px 20px;
+    color: #3a454d;
+  }
+  .char {
+    font-size: 12px;
+    color: $fontCol;
+    padding-left: 10px;
+  }
+  .page-3 .price {
+    margin-top: 10px;
+  }
+  .page-3 .description-motor {
+    margin-top: 10px;
+    text-align: left;
+    padding: 15px 20px;
+  }
+  .page-3 .btn-add-cart {
+    &:hover {
+      background-color: $btnColor;
+    }
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+/*only mobile*/
+
+@media(max-width:767px) {
+  
+  .header {
+    @include service-block();
+    background-color: $backroundHead;
+  }
+  .header-top {
+    background-color: rgba($color: #cecaca, $alpha: 0.4);
+  }
+
+  .hide-xs {
+    display: none;
+  }
+
+  .logo {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .menu {
+    position: relative;
+    @include flexSubmenu(flex-start);
+    align-self: center;
+    z-index: 10;
+    li {
+      padding: 15px 10px;
+      border-bottom: 5px solid transparent;
+      &:hover {
+        border-bottom: 5px solid $btnColor;
+      }
+      a {
+        text-decoration: none;
+        color: white;
+        font-size: 15px;
+        font-family: "Open sans", sans-serif;
+      }
+    }
+  }
+
+  
+  .nav-mobile-menu {
+    width: 15px;
+    height: 15px;
+    position: relative;
+}
+.nav-mobile-menu span {
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition: .25s ease-in-out;
+}
+.nav-mobile-menu span:nth-last-child(1) {
+    top: 3px;
+}
+.nav-mobile-menu span:nth-last-child(2) {
+    top: 7px;
+}
+.nav-mobile-menu span:nth-last-child(3) {
+    bottom: 2px;
+}
+.hidden-menu {
+    opacity: 0;
+    visibility: hidden;
+}
+.nav-mobile-menu.active-menu span:nth-last-child(1) {
+    top: 50%;
+    transform: rotate(45deg);
+}
+.nav-mobile-menu.active-menu span:nth-last-child(2) {
+    top: 50%;
+    transform: rotate(-45deg);
+}
+.nav-mobile-menu.active-menu span:nth-last-child(3) {
+    transform: scale(0);
+}
+.navigation {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 250px;
+    max-width: 250px;
+    transition: all 500ms ease-in-out;
+    transform: translateX(150%);
+}
+.navigation.active-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    top: 40px;
+    background-color: rgba(49, 90, 107,0.85);
+    
+}
+/*.header-row {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}*/
+
+  /*.menu li:hover .submenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-left: -10px;
+    visibility: visible;
+    opacity: 1;
+    background-color: #b1cd32;
+  }*/
+
+  /*.submenu {
+    position: absolute;
+    visibility: hidden;
+    flex-shrink: 0;
+  }*/
+
+  .button-search {
+    @include searchBtn();
+    margin-top: 15px;
+    &:before {
+      @include btnBefore("\f002");
+      color: $fontCol;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  .search {
+    align-items: flex-end;
+  }
+  .cart {
+    margin-top: 15px;
+  }
+
+  .fafa-shopping-cart:before {
+    cursor: pointer;
+    content: "";
+    font-family: FontAwesome;
+    font-size: 15px;
+    color: #919fa5;
+  }
+
+  .section-1 {
+    background-image: url(images/IMG_9627.png);
+    @include carsBlock(500px);
+  }
+
+  [class*=heading-] {
+    @include flexCenter();
+    font-size: 25px;
+  }
+
+  .heading-1 {
+    margin-top: 50px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .buttons {
+    @include flexCenter();
+    margin-top: 100px;
+  }
+
+  [class*=btn-] {
+    padding: 5px 20px;
+    font-size: 12px;
+    background-color: $backroundHead;
+    color: white;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+    background-color: #b1cd32;
+    color: #181818;
+    }
+  }
+
+
+  .btn-see-all {
+    margin-left: 10px;
+  }
+
+  [class*=description-] {
+    margin-top: 30px;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: center;
+    color: $fontCol;
+  }
+
+  .description-1 {
+    color: #ffffff;
+  }
+
+  .heading-2, .heading-3 {
+    margin-left: 5px;
+    line-height: 1.5;
+  }
+  .heading-4 {
+    font-size: 17px;
+    margin-top: 80px;
+    border-left: 5px solid $btnColor;
+  }
+  .heading-icon {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .tverca {
+    @include tvercaIcon();
+  }
+
+  .cars-block {
+    margin-top: 20px;
+  }
+
+  [class*=cars-item-] {
+    background-image: url(images/e21.png);
+    height: 150px;
+    background-size: cover;
+  }
+
+  .cars-item-2 {
+    background-image: url(images/motor.png);
+  }
+
+  .cars-item-3 {
+    background-image: url(images/merc&bmw.png);
+  }
+
+  .heading-item {
+    color: #444444;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 50px;
+    font-size: 17px;
+    &:hover {
+    color: $btnColor;
+    background-color: #f1efef;
+    cursor: pointer;
+    }
+  }
+
+  .section-3 {
+    background-color: #f1efef;
+  }
+
+  .service-block {
+    @include service-block();
+  }
+
+  .service-items {
+    margin-left: 15px;
+  }
+
+  .our-service {
+    margin-top: 20px;
+  }
+
+  [class*=service-icon] {
+    @include service-icon();
+    flex-shrink: 0;
+  }
+
+  .service-icon-1 {
+    background-image: url(images/idea.png);
+    &:hover {
+      background-image: url(images/green-idea.png);
+    }
+  }
+
+  .service-icon-2 {
+    background-image: url(images/wrench.png);
+    &:hover {
+      background-image: url(images/greencircle.png);
+    }
+  }
+
+  .service-icon-3 {
+    background-image: url(images/paint-work.png);
+    &:hover {
+      background-image: url(images/green-paint.png);
+    }
+  }
+
+  .service-icon-4 {
+    background-image: url(images/electric.png);
+    &:hover {
+      background-image: url(images/green-electric.png);
+    }
+  }
+
+  .service-heading {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+  .service-description {
+    margin-top: 10px;
+    color: #919fa5;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .diagram-block {
+    margin-top: 30px;
+    margin-bottom: 80px;
+    @include diagramFlex(column);
+  }
+
+  .diagram {
+    text-align: center;
+  }
+
+  .diagram-description {
+    font-size: 14px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #919fa5;
+    border-bottom: 5px solid transparent;
+    &:hover {
+      border-bottom: 5px solid $btnColor;
+    }
+  }
+
+  .footer {
+    display: flex;
+    background-color: #315a6b;
+  }
+
+  .sotial {
+    @include flexCenter();
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .footer-link {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+  }
+  /*PAGE 2*/
+  .page-2 .section-1 {
+    background-image: url(images/halfmerc.png);
+    @include carsBlock(500px)
+  }
+  .page-2 .dark-bg {
+    background-color: rgba($color: #bbbbbb, $alpha: 0.3);
+    height: 500px;
+  }
+  .page-2 .buttons {
+    margin-top: 400px;
+  }
+  .page-2 .btn-view-products {
+    width: 200px;
+   }
+  .heading-5 {
+    font-size: 20px;
+    margin-top: 50px;
+    border-left: 5px solid $btnColor;
+    text-align: center;
+  }
+  .cat {
+    margin-top: 50px;
+  }
+  .cat-container {
+    margin-bottom: 100px;
+  }
+  .category-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .category-1 {
+    @include carsBlock(180px);
+    background-image: url(images/merc-120.png);
+  }
+  .category-2 {
+    @include carsBlock(180px);
+    background-image: url(images/mk-1.png);
+  }
+  .category-3 {
+    @include carsBlock(180px);
+    background-image: url(images/e28.jpg);
+  }
+  .category-4 {
+    @include carsBlock(180px);
+    background-image: url(images/e190.jpg);
+  }
+  .category-item {
+    height: 50px;
+    width: 150px;
+    display: flex;
+    margin-top: -25px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    color: #ffffff;
+    background-color: #3a454d;
+    &:hover {
+      background-color: $btnColor;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: all 2s ease;
+    }
+  }
+  .quant-items {
+    color: $fontCol;
+    font-size: 14px;
+  }
+  // TABS
+  .mobile-tabs {
+    display: flex;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab-title-items {
+    padding: 10px 0px;
+    font-size: 15px;
+    margin-top: 30px;
+    color: $fontCol;
+    background-color: #3a454d;
+   @include service-block();
+  }
+
+  .tab-title-item {
+    width: 160px;
+    padding-left: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+  }
+
+  .tab-title-item:hover,.active {
+    color: #b1cd32;
+    border-left: 5px solid #b1cd32;
+  }
+
+  .tab-title-item:active {
+    color: $btnColor;
+    border-left: 5px solid $btnColor;
+  }
+
+  .hide {
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+  //ITEMS
+  .motor-block {
+    margin-top: 50px;
+    @include flexSubmenu(column);
+    border: 1px solid #cecece;
+  }
+  .motor-img-1 {
+    background-image: url(images/m20b20.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-2 {
+    background-image: url(images/m70.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-3 {
+    background-image: url(images/OM601.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-4 {
+    background-image: url(images/m30.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-5 {
+    background-image: url(images/golf-gti.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-6 {
+    background-image: url(images/ingector.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-7 {
+    background-image: url(images/e30white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-8 {
+    background-image: url(images/w124.jpeg);
+    @include carsBlock(180px);
+  }
+  .motor-img-9 {
+    background-image: url(images/rim1.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-10 {
+    background-image: url(images/suspBmw.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-11 {
+    background-image: url(images/190white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-12 {
+    background-image: url(images/golfgti.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-13 {
+    background-image: url(images/rim2.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-14 {
+    background-image: url(images/gisc.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-15 {
+    background-image: url(images/w144.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-16 {
+    background-image: url(images/MTS.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-17 {
+    background-image: url(images/redgolf.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-18 {
+    background-image: url(images/headlightE21.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-19 {
+    background-image: url(images/E34white.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-20 {
+    background-image: url(images/spoiler.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-21 {
+    background-image: url(images/blackE190.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-22 {
+    background-image: url(images/headlightE28.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-23 {
+    background-image: url(images/frontE28.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-24 {
+    background-image: url(images/backE32.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-25 {
+    background-image: url(images/Samrez.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-26 {
+    background-image: url(images/Putty1.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-27 {
+    background-image: url(images/tools.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-28 {
+    background-image: url(images/Putty2.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-29 {
+    background-image: url(images/plates.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-30 {
+    background-image: url(images/signBmw.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-31 {
+    background-image: url(images/bat.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-32 {
+    background-image: url(images/fire.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-33 {
+    background-image: url(images/leopard.jpeg);
+    @include carsBlock(180px);
+  }
+  .motor-img-34 {
+    background-image: url(images/tree.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-35 {
+    background-image: url(images/N2O.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-36 {
+    background-image: url(images/nitromethane.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-37 {
+    background-image: url(images/stik1.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-38 {
+    background-image: url(images/icons.png);
+    @include carsBlock(180px);
+  }
+  .motor-img-39 {
+    background-image: url(images/NewPlate.jpg);
+    @include carsBlock(180px);
+  }
+  .motor-img-40 {
+    background-image: url(images/MSsign.jpg);
+    @include carsBlock(180px);
+  }
+  .description-motor {
+    margin-top: 0;
+    padding: 15px 15px;
+    font-size: 14px;
+  }
+  .price {
+    color: #3a454d;
+    font-size: 20px;
+    text-align: center;
+  }
+  .price-one {
+    font-size: 12px;
+    color: #82888d;
+  }
+  .btn-description {
+    margin-top: 15px;
+    background-color: #cecece;
+    color: #3a454d;
+    &:hover {
+      color: #ffffff;
+    }
+  }
+  .btn-add-cart {
+    margin-top: 5px;
+    &:hover {
+      background-color: #e6b516;
+    }
+  }
+  .show-more {
+    margin-left: -110px;
+  }
+  .btn-show-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 30px;
+    background-color: #57585a;
+    margin: 100px 150px;
+    padding: 5px 10px;
+  }
+  /*PAGE #3*/
+
+  //Menu
+  .page-3 .section-1 {
+    /*background-image: url(images/520E12.jpg);
+    @include carsBlock(600px);*/
+    background: none;
+    height: 15px;
+  }
+  .page-3 .section-2 {
+    background-color: #3a454d;
+  }
+  .page-3 .dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.3);
+  }
+  .page-3 .header-top {
+    background-color: rgba($color: #858585, $alpha: 0.4);
+  }
+  /*SLIDER*/
+  .car-top {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  .car-dark-bg {
+    background-color: rgba($color: #858585, $alpha: 0.5);
+  }
+  [class*=car-shop-] {
+    @include flexCenter();
+    @include carsBlock(200px);
+    background-image: url(images/girl.jpg);
+  }
+  .car-shop-2 {
+    background-image: url(images/maintenance.jpg);
+  }
+  .car-shop-3 {
+    background-image: url(images/delivery.jpg);
+  }
+  [class*=car-sale-item-] {
+    @include flexCenter();
+    background-color: rgb(201, 221, 88);
+    color: white;
+    font-size: 15px;
+    padding: 10px 20px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+      -webkit-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      transform: scale(1.2);
+      transition: all 2s ease;
+    }
+  }
+  .car-sale-item-1 {
+    width: 100%;
+  }
+  .car-sale-item-2 {
+    padding: 10px 15px;
+    background-color: rgb(221, 175, 88);
+  }
+  .car-sale-item-3 {
+    padding: 10px 5px;
+    background-color: rgb(88, 196, 111);
+  }
+  //TABS
+  .page-3 .tab-title-items {
+    font-size: 15px;
+    margin-top: 50px;
+    color: $fontCol;
+    @include flexCenter();
+  }
+  .tab-title-item {
+    padding-left: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+    border-left: 5px solid transparent;
+  }
+
+  .tab-title-item:hover,.active {
+    color: #b1cd32;
+    border-left: 5px solid #b1cd32;
+  }
+
+  .page-3 .motor-img-1 {
+    @include carsBlock(180px);
+    background-image: url(images/greenE12.jpg);
+  }
+  .page-3 .motor-img-2 {
+    @include carsBlock(180px);
+    background-image: url(images/E34white.jpg);
+  }
+  .page-3 .motor-img-3 {
+    @include carsBlock(180px);
+    background-image: url(images/E21green.jpg);
+  }
+  .page-3 .motor-img-4 {
+    @include carsBlock(180px);
+    background-image: url(images/M5E28.jpg);
+  }
+  .page-3 .motor-img-5 {
+    @include carsBlock(180px);
+    background-image: url(images/E30coupe.jpg);
+  }
+  .page-3 .motor-img-6 {
+    @include carsBlock(180px);
+    background-image: url(images/e32low.jpg);
+  }
+  .page-3 .motor-img-7 {
+    @include carsBlock(180px);
+    background-image: url(images/e36coupe.jpg);
+  }
+  .page-3 .motor-img-8 {
+    @include carsBlock(180px);
+    background-image: url(images/e39white.jpg);
+  }
+  .car-char {
+    font-size: 13px;
+    text-align: left;
+    padding: 5px 20px;
+    color: #3a454d;
+  }
+  .char {
+    font-size: 12px;
+    color: $fontCol;
+    padding-left: 10px;
+  }
+  .page-3 .price {
+    margin-top: 10px;
+  }
+  .page-3 .description-motor {
+    margin-top: 10px;
+    text-align: left;
+    padding: 15px 20px;
+  }
+  .page-3 .btn-add-cart {
+    &:hover {
+      background-color: $btnColor;
+    }
+  }
+}
+
+/*# sourceMappingURL=style.scss.map */
