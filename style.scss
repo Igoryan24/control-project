@@ -682,27 +682,106 @@ body {
   }
 
   /*PAGE #3*/
-  /*.page-3 .section-1 {
+  .page-3 .section-1 {
     background-image: url(images/520E12.jpg);
     @include carsBlock(50px);
   
   }
-  /*.page-3 .section-2 {
+  .page-3 .section-2 {
     background-color: #3a454d;
   }
   .page-3 .dark-bg {
     background-color: rgba($color: #858585, $alpha: 0.7);
   }
   .page-3 .header-top {
-    background-color: rgba($color: #858585, $alpha: 0.2);
+    background-color: rgba($color: #858585, $alpha: 0.5);
   }
   /*SLIDER*/
+  .section-slider {
+    background-color:  #ffffff;
+    margin-bottom: 100px;
+  }
   .slick-track {
     display: flex;
   }
-  /*.slide-img {
-   height: 500px;
-  }*/
+  .slick-track {
+    display: flex;
+  }
+
+  .slider-block {
+    margin-bottom:0px;
+    outline: none;
+  }
+  .slider-block-2 {
+    margin-top: 0px;
+  }
+
+  .slider-block-2 img {
+    margin: 0px 2px;
+    padding: 3px;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+
+  .slider-block-2 img:hover, .slick-current img { 
+    background: #747474;
+  }
+
+  .slick-dots {
+    margin-top: -50px;
+  }
+  .slick-dots li button {
+    border: 2px solid #777;
+    border-radius: 10px;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  
+  .slick-dots li button:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #777;
+    opacity: 1;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  .slick-dots li.slick-active button:before {
+    background-color: $btnColor;
+  }
+
+  .slick-dots li.slick-active button {
+    border: 2px solid $btnColor;
+  }
+
+  .slick-next, .slick-prev {
+    font-size: 35px;
+    height: 32px;
+    z-index: 1001;
+    &:before {
+      font-size: 35px;
+      text-shadow: 1px 1px 1px rgba(0,0,0, 0.4);
+    }
+  }
+
+  .slick-prev {
+    left: 15px;
+  }
+
+  .slick-next {
+    right: 30px;
+  }
   .car-top {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -1503,6 +1582,9 @@ body {
     margin-bottom: -20px;
     outline: none;
   }
+  .slider-block-2 {
+    margin-top: 0px;
+  }
 
   .slider-block-2 img {
     margin: 0px 7px;
@@ -1511,19 +1593,27 @@ body {
     border-radius: 3px;
     outline: none;
     cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease 0s;
     -webkit-transition: background .3s;
     -o-transition: background .3s;
     transition: background .3s;
   }
-  .slider-block-2 img:hover,.active {
+
+  .slider-block-2 img.slick-center {
+    opacity: 1;
+  }
+
+  .slider-block-2 img:hover, .slick-current img { 
     background: #747474;
   }
+
   .slick-dots {
     margin-top: -50px;
   }
   .slick-dots li button {
-    border: 2px solid $btnColor;
-    border-radius: 5px;
+    border: 2px solid #777;
+    border-radius: 10px;
     -webkit-transition: background .3s;
     -o-transition: background .3s;
     transition: background .3s;
@@ -1544,7 +1634,11 @@ body {
     transition: background .3s;
   }
   .slick-dots li.slick-active button:before {
-    background-color: #ffffff;
+    background-color: $btnColor;
+  }
+
+  .slick-dots li.slick-active button {
+    border: 2px solid $btnColor;
   }
 
   .slick-next, .slick-prev {
@@ -2381,6 +2475,92 @@ body {
     background-color: rgba($color: #858585, $alpha: 0.4);
   }
   /*SLIDER*/
+
+  .slick-track {
+    display: flex;
+  }
+
+  .slider-block {
+    margin-bottom: 0px;
+    outline: none;
+  }
+  .slider-block-2 {
+    margin-top: 0px;
+  }
+
+  .slider-block-2 img {
+    margin: 0px 7px;
+    padding: 3px;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    opacity: 0.5;
+    text-align: center;
+    transition: all 0.3s ease 0s;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+
+  .slider-block-2 img.slick-center {
+    opacity: 1;
+  }
+
+  .slider-block-2 img:hover, .slick-current img { 
+    background: #747474;
+  }
+
+  .slick-dots {
+    margin-top: -50px;
+  }
+  .slick-dots li button {
+    border: 2px solid #777;
+    border-radius: 10px;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  
+  .slick-dots li button:before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #777;
+    opacity: 1;
+    border-radius: 5px;
+    top: 50%;
+    left: 50%;
+    margin: -5px 0 0 -5px;
+    -webkit-transition: background .3s;
+    -o-transition: background .3s;
+    transition: background .3s;
+  }
+  .slick-dots li.slick-active button:before {
+    background-color: $btnColor;
+  }
+
+  .slick-dots li.slick-active button {
+    border: 2px solid $btnColor;
+  }
+
+  .slick-next, .slick-prev {
+    font-size: 35px;
+    height: 32px;
+    z-index: 1001;
+    &:before {
+      font-size: 35px;
+      text-shadow: 1px 1px 1px rgba(0,0,0, 0.4);
+    }
+  }
+
+  .slick-prev {
+    left: 15px;
+  }
+
+  .slick-next {
+    right: 30px;
+  }
   .car-top {
     margin-top: 30px;
     margin-bottom: 30px;

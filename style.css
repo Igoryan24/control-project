@@ -2058,9 +2058,15 @@ body {
     border-radius: 3px;
     outline: none;
     cursor: pointer;
+    opacity: 0.5;
+    transition: all 0.3s ease 0s;
     -webkit-transition: background 0.3s;
     -o-transition: background 0.3s;
     transition: background 0.3s;
+  }
+
+  .slider-block-2 img.slick-center {
+    opacity: 1;
   }
 
   .slider-block-2 img:hover, .slick-current img {
@@ -3138,15 +3144,22 @@ body {
   }
 
   .slider-block-2 img {
-    margin: 0px 2px;
+    margin: 0px 7px;
     padding: 3px;
     background: #ddd;
     border-radius: 3px;
     outline: none;
     cursor: pointer;
+    opacity: 0.5;
+    text-align: center;
+    transition: all 0.3s ease 0s;
     -webkit-transition: background 0.3s;
     -o-transition: background 0.3s;
     transition: background 0.3s;
+  }
+
+  .slider-block-2 img.slick-center {
+    opacity: 1;
   }
 
   .slider-block-2 img:hover, .slick-current img {
